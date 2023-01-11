@@ -177,13 +177,17 @@ public class Model extends Observable {
         if (emptySpaceExists(b)){
             return true;
         }
-        for (int row = b.size()-1; row > 0; row -= 1){
-            for (int col = 0; col < b.size()-1; col += 1){
-                if (equalTwoTileValues(b.tile(col,row-1),b.tile(col,row))){
-                    return true;
+        for (int row = b.size()-1; row >= 0; row -= 1){
+            for (int col = 0; col < b.size(); col += 1){
+                if (row != 0) {
+                    if (equalTwoTileValues(b.tile(col, row - 1), b.tile(col, row))) {
+                        return true;
+                    }
                 }
-                if (equalTwoTileValues(b.tile(col+1,row),b.tile(col,row))){
-                    return true;
+                if (col != b.size()-1) {
+                    if (equalTwoTileValues(b.tile(col + 1, row), b.tile(col, row))) {
+                        return true;
+                    }
                 }
             }
         }
