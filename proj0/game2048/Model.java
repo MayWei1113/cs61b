@@ -153,7 +153,6 @@ public class Model extends Observable {
      * given a Tile object t, we get its value with t.value().
      */
     public static boolean maxTileExists(Board b) {
-        // TODO: Fill in this function.
         for (int row = b.size()-1; row >= 0; row -= 1){
             for (int col = 0; col < b.size(); col += 1){
                 if (b.tile(col, row) != null){
@@ -174,9 +173,29 @@ public class Model extends Observable {
      */
     public static boolean atLeastOneMoveExists(Board b) {
         // TODO: Fill in this function.
+
+        if (emptySpaceExists(b)){
+            return true;
+        }
+        for (int row = b.size()-1; row > 0; row -= 1){
+            for (int col = 0; col < b.size()-1; col += 1){
+                if (equalTwoTileValues(b.tile(col,row-1),b.tile(col,row))){
+                    return true;
+                }
+                if (equalTwoTileValues(b.tile(col+1,row),b.tile(col,row))){
+                    return true;
+                }
+            }
+        }
         return false;
     }
-
+    private static boolean equalTwoTileValues(Tile v1, Tile v2){
+        if (v1.value() == v2.value()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     @Override
      /** Returns the model as a string, used for debugging. */
