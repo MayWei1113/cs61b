@@ -118,16 +118,17 @@ public class Model extends Observable {
             for(int r=2; r >= 0; r -= 1){
 
                 Tile t = board.tile(c,r);
-                int movedRow = SetPosition(c,r,movedCol);
-                if(movedRow != r){
-                    boolean merged = board.move(c,movedRow,t);
-                    movedCol = movedCol || merged;
-                    changed = true;
-                    if(merged==true){
-                        score +=  board.tile(c,movedRow).value();
+                if(t != null) {
+                    int movedRow = SetPosition(c, r, t.value(), movedCol);
+                    if (movedRow != r) {
+                        boolean merged = board.move(c, movedRow, t);
+                        movedCol = movedCol || merged;
+                        changed = true;
+                        if (merged == true) {
+                            score += board.tile(c, movedRow).value();
+                        }
                     }
                 }
-
             }
         }
 
@@ -139,7 +140,18 @@ public class Model extends Observable {
     }
 
     /** Determine which position to move */
-    private int SetPosition(int col, int row, boolean movedCol){
+    private int SetPosition(int col, int row, int tvalue, boolean movedCol){
+        Tile tup = board.tile(col,row+1);
+        if(row+2 == board.size() && tup == null){
+            return row+1;
+        }
+        if (tup == null) {
+            row = SetPosition(col,row+1,tvalue,movedCol);
+        } else if (tup.value()!=tvalue || movedCol == true) {
+            return row;
+        } else if (tup.value()==tvalue && movedCol == false){
+            return row+1;
+        }
         return row;
     }
 
