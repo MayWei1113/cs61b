@@ -110,23 +110,26 @@ public class Model extends Observable {
         boolean changed;
         changed = false;
 
-        // TODO: Modify this.board (and perhaps this.score) to account
         // for the tilt to the Side SIDE. If the board changed, set the
-        // changed local variable to true.
-        for(int c=0; c < board.size(); c += 1){
-            boolean movedCol = false;
-            for(int r=2; r >= 0; r -= 1){
-
-                Tile t = board.tile(c,r);
-                if(t != null) {
-                    int movedRow = SetPosition(c, r, t.value(), movedCol);
-                    if (movedRow != r) {
-                        boolean merged = board.move(c, movedRow, t);
-                        movedCol = movedCol || merged;
-                        changed = true;
-                        if (merged == true) {
-                            score += board.tile(c, movedRow).value();
-                        }
+        // changed local variable to true.s
+        board.setViewingPerspective(side);
+        for(int c=0; c < board.size(); c += 1) {
+            boolean merged = false;
+            for (int r = 2; r >= 0; r -= 1) {
+                Tile t = board.tile(c, r);
+                // move to next tile if current one is empty
+                if (t == null) {
+                    continue;
+                }
+                // Look for target position
+                int targetRow = SetPosition(c, r, t.value(), merged);
+                // move the tile if the targetRow is not current row
+                if (targetRow != r) {
+                    merged = board.move(c, targetRow, t);
+                    changed = true;
+                    // add up scores
+                    if (merged) {
+                        score += board.tile(c, targetRow).value();
                     }
                 }
             }
@@ -136,6 +139,7 @@ public class Model extends Observable {
         if (changed) {
             setChanged();
         }
+        board.setViewingPerspective(Side.NORTH);
         return changed;
     }
 
@@ -147,9 +151,9 @@ public class Model extends Observable {
         }
         if (tup == null) {
             row = SetPosition(col,row+1,tvalue,movedCol);
-        } else if (tup.value()!=tvalue || movedCol == true) {
+        } else if (tup.value()!=tvalue || movedCol) {
             return row;
-        } else if (tup.value()==tvalue && movedCol == false){
+        } else if (tup.value()==tvalue){
             return row+1;
         }
         return row;
