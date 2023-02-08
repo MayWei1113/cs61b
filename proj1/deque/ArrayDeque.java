@@ -1,23 +1,53 @@
 package deque;
 
-public class ArrayDeque<Freetype> {
+public class ArrayDeque<T> {
     private int size;
-    private Freetype[] items;
+    private T[] items;
     private int nextFirst;
     private int nextLast;
 
     public ArrayDeque() {
-        items = (Freetype[]) new Object[8];
+        items = (T[]) new Object[8];
         size = 0;
         nextFirst = 7;
         nextLast = 0;
     }
 
+    public int startInd() {
+        if (nextFirst == items.length - 1) {
+            return 0;
+        }
+        return nextFirst + 1;
+    }
+
+    public int endInd() {
+        if (nextLast == 0) {
+            return items.length - 1;
+        }
+        return nextLast - 1;
+    }
+
+    /* resize the deque if items.length == size **/
+    public void resize(int len) {
+        T[] newItems = (T[]) new Object[len];
+        int start = startInd();
+        int end = endInd();
+        if (end >= start) {
+            System.arraycopy(items, start, newItems, 0, size);
+        } else {
+            System.arraycopy(items, start, newItems, 0, size - start);
+            System.arraycopy(items, 0, newItems, size - start + 1, nextLast);
+        }
+        nextLast = size;
+        nextFirst = len - 1;
+        items = newItems;
+    }
+
     /* add an element to the last of the deque **/
-    public void addLast(Freetype x) {
-        //if (size == items.length) {
-        //resize();
-        //}
+    public void addLast(T x) {
+        if (size == items.length) {
+            resize(size * 2);
+        }
         items[nextLast] = x;
         nextLast += 1;
         if (nextLast == items.length) {
@@ -27,10 +57,10 @@ public class ArrayDeque<Freetype> {
     }
 
     /* add an element to the front of an deque **/
-    public void addFirst(Freetype x) {
-        //if (size == items.length) {
-        //resize();
-        //}
+    public void addFirst(T x) {
+        if (size == items.length) {
+            resize(size * 2);
+        }
         items[nextFirst] = x;
         nextFirst -= 1;
         if (nextFirst == -1) {
@@ -62,11 +92,14 @@ public class ArrayDeque<Freetype> {
     }
 
     /* remove the first element of a deque **/
-    public Freetype removeFirst() {
+    public T removeFirst() {
         if (this.isEmpty()) {
             return null;
         }
-        Freetype removal = this.get(0);
+        if (size <= items.length/4 & size >= 16) {
+            resize(items.length/4);
+        }
+        T removal = this.get(0);
         nextFirst = nextFirst + 1;
         if (nextFirst >= items.length) {
             nextFirst = 0;
@@ -77,11 +110,14 @@ public class ArrayDeque<Freetype> {
     }
 
     /* remove and return the last element of a deque **/
-    public Freetype removeLast() {
+    public T removeLast() {
         if (this.isEmpty()) {
             return null;
         }
-        Freetype removal = this.get(size - 1);
+        if (size <= items.length/4 & size >= 16) {
+            resize(items.length/4);
+        }
+        T removal = this.get(size - 1);
         nextLast = nextLast - 1;
         if (nextLast < 0) {
             nextLast += items.length;
@@ -92,7 +128,7 @@ public class ArrayDeque<Freetype> {
     }
 
     /* get the ith element of the deque **/
-    public Freetype get(int i) {
+    public T get(int i) {
         if (this.isEmpty()) {
             return null;
         }
