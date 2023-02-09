@@ -11,7 +11,7 @@ public class TestArrayDequeEC {
 
     private String errorMessage(String[] s, int j) {
         String errMes = "";
-        for (int oind = j - 2; oind <= j; oind += 1) {
+        for (int oind = 0; oind <= j; oind += 1) {
             if (oind < 0) {
                 continue;
             }
