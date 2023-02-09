@@ -52,7 +52,7 @@ public class TestArrayDequeEC {
                 B.addFirst(randVal);
                 output[j] = "addFirst(" + randVal + ")";
                 j += 1;
-            } else if (operationNumber == 2 & L.size() > 0) {
+            } else if (operationNumber == 2 & L.size() > 0 & B.size() > 0) {
                 // remove last
                 Integer x = L.removeLast();
                 Integer bX = B.removeLast();
@@ -60,7 +60,7 @@ public class TestArrayDequeEC {
                 String errmes = errorMessage(output, j);
                 assertEquals(errmes, x, bX);
                 j += 1;
-            } else if (operationNumber == 3 & L.size() > 0) {
+            } else if (operationNumber == 3 & L.size() > 0 & B.size() > 0) {
                 // remove first
                 Integer x = L.removeFirst();
                 Integer bX = B.removeFirst();
