@@ -20,14 +20,6 @@ public class TestArrayDequeEC {
         return errMes;
     }
 
-    public String[] checkSize(ArrayDequeSolution L, StudentArrayDeque B, String[] errMessages, int j) {
-        int corrSize = L.size();
-        int stuSize = B.size();
-        errMessages[j] = "size()";
-        String errmess = errorMessage(errMessages, j);
-        assertEquals(errmess, corrSize, stuSize);
-        return errMessages;
-    }
     @Test
     public void randomisedTest() {
         ArrayDequeSolution<Integer> L = new ArrayDequeSolution<>();
