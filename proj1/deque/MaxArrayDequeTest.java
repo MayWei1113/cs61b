@@ -1,5 +1,4 @@
 package deque;
-import afu.org.checkerframework.checker.oigj.qual.O;
 import org.junit.Test;
 
 import java.util.Comparator;
@@ -25,7 +24,7 @@ public class MaxArrayDequeTest {
     private StringComparator s = new StringComparator();
 
     @Test
-    public void NullArrayTest() {
+    public void nullArrayTest() {
 
         MaxArrayDeque<Integer> intMaxArray = new MaxArrayDeque<Integer>(c);
         Object largest = intMaxArray.max();
@@ -35,7 +34,7 @@ public class MaxArrayDequeTest {
     }
 
     @Test
-    public void IntArrayTest() {
+    public void intArrayTest() {
         MaxArrayDeque<Integer> intMaxArray = new MaxArrayDeque<Integer>(c);
         intMaxArray.addFirst(10);
         intMaxArray.addLast(23);
@@ -47,7 +46,7 @@ public class MaxArrayDequeTest {
     }
 
     @Test
-    public void StringArrayTest() {
+    public void stringArrayTest() {
         MaxArrayDeque<String> stringMaxArray = new MaxArrayDeque<String>(s);
         stringMaxArray.addFirst("Bob");
         stringMaxArray.addFirst("Dec");

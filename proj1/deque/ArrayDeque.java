@@ -1,6 +1,6 @@
 package deque;
 
-public class ArrayDeque<T> implements Deque<T>{
+public class ArrayDeque<T> implements Deque<T> {
     private int size;
     private T[] items;
     private int nextFirst;
@@ -88,8 +88,8 @@ public class ArrayDeque<T> implements Deque<T>{
         if (this.isEmpty()) {
             return null;
         }
-        if (size <= items.length/4 & size >= 16) {
-            resize(items.length/4);
+        if (size <= items.length / 4 & size >= 16) {
+            resize(items.length / 4);
         }
         T removal = this.get(0);
         nextFirst = nextFirst + 1;
@@ -106,8 +106,8 @@ public class ArrayDeque<T> implements Deque<T>{
         if (this.isEmpty()) {
             return null;
         }
-        if (size <= items.length/4 & size >= 16) {
-            resize(items.length/4);
+        if (size <= items.length / 4 & size >= 16) {
+            resize(items.length / 4);
         }
         T removal = this.get(size - 1);
         nextLast = nextLast - 1;
