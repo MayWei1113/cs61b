@@ -1,15 +1,15 @@
 package deque;
 
-public class LinkedListDeque<Freetype> {
+public class LinkedListDeque<T> implements Deque<T> {
     private DNode sentinel;
     private int size;
 
     public class DNode {
-        private Freetype item;
+        private T item;
         private DNode next;
 
         private DNode prev;
-        public DNode(Freetype i, DNode n, DNode m) {
+        public DNode(T i, DNode n, DNode m) {
             item = i;
             next = n;
             prev = m;
@@ -23,30 +23,23 @@ public class LinkedListDeque<Freetype> {
         size = 0;
     }
 
-    public LinkedListDeque(Freetype x) {
+    public LinkedListDeque(T x) {
         sentinel = new DNode(x, null,  null);
         sentinel.next = new DNode(x, null, sentinel);
         sentinel.prev = sentinel;
         size = 1;
     }
 
-    public void addFirst(Freetype x) {
+    public void addFirst(T x) {
         sentinel.next = new DNode(x, sentinel.next, sentinel);
         sentinel.next.next.prev = sentinel.next;
         size = size + 1;
     }
 
-    public void addLast(Freetype x) {
+    public void addLast(T x) {
         sentinel.prev = new DNode(x, sentinel, sentinel.prev);
         sentinel.prev.prev.next = sentinel.prev;
         size = size + 1;
-    }
-
-    public boolean isEmpty() {
-        if (size == 0) {
-            return true;
-        }
-        return false;
     }
 
     public int size() {
@@ -64,22 +57,22 @@ public class LinkedListDeque<Freetype> {
 
     }
 
-    public Freetype removeFirst() {
+    public T removeFirst() {
         if (this.isEmpty()) {
             return null;
         }
-        Freetype first = sentinel.next.item;
+        T first = sentinel.next.item;
         sentinel.next = sentinel.next.next;
         sentinel.next.prev = sentinel;
         size = size - 1;
         return first;
     }
 
-    public Freetype removeLast() {
+    public T removeLast() {
         if (this.isEmpty()) {
             return null;
         }
-        Freetype last = sentinel.prev.item;
+        T last = sentinel.prev.item;
         sentinel.prev = sentinel.prev.prev;
         sentinel.prev.next = sentinel;
         size = size - 1;
@@ -87,9 +80,9 @@ public class LinkedListDeque<Freetype> {
 
     }
 
-    public Freetype get(int index) {
+    public T get(int index) {
         DNode iter = sentinel.next;
-        Freetype item = null;
+        T item = null;
         while (index >= 0) {
             item = iter.item;
             iter = iter.next;

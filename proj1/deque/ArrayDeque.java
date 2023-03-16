@@ -1,6 +1,6 @@
 package deque;
 
-public class ArrayDeque<T> {
+public class ArrayDeque<T> implements Deque<T>{
     private int size;
     private T[] items;
     private int nextFirst;
@@ -69,14 +69,6 @@ public class ArrayDeque<T> {
         size = size + 1;
     }
 
-    /* find out if the deque is empty **/
-    public boolean isEmpty() {
-        if (size == 0) {
-            return true;
-        }
-        return false;
-    }
-
     /* return the size of the deque **/
     public int size() {
         return size;
@@ -128,6 +120,7 @@ public class ArrayDeque<T> {
     }
 
     /* get the ith element of the deque **/
+    @Override
     public T get(int i) {
         if (this.isEmpty()) {
             return null;
