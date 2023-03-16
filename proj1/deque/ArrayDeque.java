@@ -1,6 +1,9 @@
 package deque;
 import java.util.Iterator;
-public class ArrayDeque<T> implements Deque<T> {
+import java.util.Spliterator;
+import java.util.function.Consumer;
+
+public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     private int size;
     private T[] items;
     private int nextFirst;
@@ -133,4 +136,18 @@ public class ArrayDeque<T> implements Deque<T> {
     }
 
 
+    @Override
+    public Iterator<T> iterator() {
+        return null;
+    }
+
+    @Override
+    public void forEach(Consumer<? super T> action) {
+        Iterable.super.forEach(action);
+    }
+
+    @Override
+    public Spliterator<T> spliterator() {
+        return Iterable.super.spliterator();
+    }
 }
