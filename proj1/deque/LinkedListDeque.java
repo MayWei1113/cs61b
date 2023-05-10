@@ -8,11 +8,6 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
     private int size;
 
     @Override
-    public Iterator<T> iterator() {
-        return null;
-    }
-
-    @Override
     public void forEach(Consumer<? super T> action) {
         Iterable.super.forEach(action);
     }
@@ -104,7 +99,60 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
         while (index >= 0) {
             item = iter.item;
             iter = iter.next;
+            index = index - 1;
         }
         return item;
     }
+    @Override
+    public Iterator<T> iterator() {
+        return new LinkedListIterator();
+    }
+
+    private class LinkedListIterator implements Iterator<T> {
+        private int wizPos;
+        private DNode itera;
+        private T returnItem;
+
+        public LinkedListIterator() {
+            wizPos = 0;
+            returnItem = null;
+            itera = sentinel.next;
+        }
+
+        public boolean hasNext() {
+            return wizPos < size;
+        }
+
+        public T next() {
+
+            returnItem = itera.item;
+            itera = itera.next;
+            wizPos += 1;
+            return returnItem;
+        }
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if (this == o) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+        if (o.getClass() != this.getClass()) {
+            return false;
+        }
+        LinkedListDeque<T> other = (LinkedListDeque<T>) o;
+        if (other.size() != this.size()) {
+            return false;
+        }
+        for (int i = 0; i < this.size(); i++) {
+            if (this.get(i) != other.get(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
+

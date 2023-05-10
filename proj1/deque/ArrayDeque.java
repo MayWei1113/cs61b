@@ -138,7 +138,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return new ArrayDequeIterator();
     }
 
     @Override
@@ -149,5 +149,53 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     @Override
     public Spliterator<T> spliterator() {
         return Iterable.super.spliterator();
+    }
+
+    public class ArrayDequeIterator implements Iterator<T>{
+        private int iterNext;
+        private T returnItem;
+        private int wizPos;
+        public ArrayDequeIterator() {
+            iterNext = startInd();
+            returnItem = null;
+            wizPos = 0;
+        }
+
+        public boolean hasNext(){
+            return wizPos < size;
+        }
+
+        public T next(){
+            returnItem = items[iterNext];
+            iterNext = iterNext + 1;
+            if (iterNext > items.length) {
+                iterNext = iterNext - items.length;
+            }
+            wizPos = wizPos + 1;
+            return returnItem;
+        }
+
+    }
+    @Override
+    public boolean equals(Object o){
+        if (this == o) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+        if (o.getClass() != this.getClass()) {
+            return false;
+        }
+        ArrayDeque<T> other = (ArrayDeque<T>) o;
+        if (other.size() != this.size()) {
+            return false;
+        }
+        for (int i = 0; i < this.size(); i++) {
+            if (this.get(i) != other.get(i)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
