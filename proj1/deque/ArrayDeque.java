@@ -16,14 +16,14 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         nextLast = 0;
     }
 
-    public int startInd() {
+    private int startInd() {
         if (nextFirst == items.length - 1) {
             return 0;
         }
         return nextFirst + 1;
     }
 
-    public int endInd() {
+    private int endInd() {
         if (nextLast == 0) {
             return items.length - 1;
         }
@@ -31,7 +31,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     }
 
     /* resize the deque if items.length == size **/
-    public void resize(int len) {
+    private void resize(int len) {
         T[] newItems = (T[]) new Object[len];
         int start = startInd();
         int end = endInd();
@@ -139,16 +139,6 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     @Override
     public Iterator<T> iterator() {
         return new ArrayDequeIterator();
-    }
-
-    @Override
-    public void forEach(Consumer<? super T> action) {
-        Iterable.super.forEach(action);
-    }
-
-    @Override
-    public Spliterator<T> spliterator() {
-        return Iterable.super.spliterator();
     }
 
     public class ArrayDequeIterator implements Iterator<T> {

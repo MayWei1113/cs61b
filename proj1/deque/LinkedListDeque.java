@@ -7,16 +7,6 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
     private DNode sentinel;
     private int size;
 
-    @Override
-    public void forEach(Consumer<? super T> action) {
-        Iterable.super.forEach(action);
-    }
-
-    @Override
-    public Spliterator<T> spliterator() {
-        return Iterable.super.spliterator();
-    }
-
     public class DNode {
         private T item;
         private DNode next;
