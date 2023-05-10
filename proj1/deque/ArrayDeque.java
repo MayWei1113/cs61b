@@ -151,7 +151,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         return Iterable.super.spliterator();
     }
 
-    public class ArrayDequeIterator implements Iterator<T>{
+    public class ArrayDequeIterator implements Iterator<T> {
         private int iterNext;
         private T returnItem;
         private int wizPos;
@@ -161,11 +161,11 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
             wizPos = 0;
         }
 
-        public boolean hasNext(){
+        public boolean hasNext() {
             return wizPos < size;
         }
 
-        public T next(){
+        public T next() {
             returnItem = items[iterNext];
             iterNext = iterNext + 1;
             if (iterNext > items.length) {
@@ -177,7 +177,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
 
     }
     @Override
-    public boolean equals(Object o){
+    public boolean equals(Object o) {
         if (this == o) {
             return true;
         }

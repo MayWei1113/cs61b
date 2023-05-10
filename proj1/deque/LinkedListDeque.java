@@ -94,6 +94,9 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
     }
 
     public T get(int index) {
+        if (index >= size) {
+            return null;
+        }
         DNode iter = sentinel.next;
         T item = null;
         while (index >= 0) {
@@ -102,6 +105,21 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
             index = index - 1;
         }
         return item;
+    }
+
+    public T getRecursive(int index) {
+        if (index >= size) {
+            return null;
+        }
+        DNode iter = sentinel.next;
+        if (index == 0) {
+            T item = iter.item;
+            return item;
+        }
+        index = index - 1;
+        LinkedListDeque<T> newList = this;
+        newList.removeFirst();
+        return newList.getRecursive(index);
     }
     @Override
     public Iterator<T> iterator() {
@@ -133,7 +151,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
     }
 
     @Override
-    public boolean equals(Object o){
+    public boolean equals(Object o) {
         if (this == o) {
             return true;
         }

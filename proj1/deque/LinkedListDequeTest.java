@@ -21,7 +21,7 @@ public class LinkedListDequeTest {
 		lld1.addFirst("front");
 
 		// The && operator is the same as "and" in Python.
-		// It's a binary operator that returns true if both arguments true, and false otherwise.
+        // It's a binary operator that returns true if both arguments true, and false otherwise.
         assertEquals(1, lld1.size());
         assertFalse("lld1 should now contain 1 item", lld1.isEmpty());
 
@@ -69,6 +69,22 @@ public class LinkedListDequeTest {
         errorMsg += "  actual size() returned 0\n";
 
         assertEquals(errorMsg, 0, size);
+    }
+
+    @Test
+    public void getTest() {
+        LinkedListDeque<Integer> lld1 = new LinkedListDeque<>();
+        lld1.addFirst(3);
+        lld1.addFirst(2);
+        lld1.addFirst(23);
+
+        int getNum = lld1.get(0);
+        String errorMsg = "get number wrong!";
+        assertEquals(errorMsg, 23, getNum);
+
+        int getRecurNum = lld1.getRecursive(2);
+        String errorRecurMsg = "get number wrong in recursive!";
+        assertEquals(errorRecurMsg, 3, getRecurNum);
     }
 
     @Test

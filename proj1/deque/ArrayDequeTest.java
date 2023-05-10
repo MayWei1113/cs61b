@@ -56,8 +56,8 @@ public class ArrayDequeTest {
         int y = lld1.removeFirst();
         // should be empty
         assertTrue("lld1 should be empty after removal", lld1.isEmpty());
-        assertEquals(10,x);
-        assertEquals(12,y);
+        assertEquals(10, x);
+        assertEquals(12, y);
     }
 
     @Test
@@ -95,9 +95,9 @@ public class ArrayDequeTest {
         double d = lld2.removeFirst();
         boolean b = lld3.removeFirst();
 
-        assertEquals("string",s);
-        assertEquals(3.14159,d,0.0001);
-        assertEquals(true,b);
+        assertEquals("string", s);
+        assertEquals(3.14159, d, 0.0001);
+        assertEquals(true, b);
     }
 
     @Test
