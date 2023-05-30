@@ -1,7 +1,5 @@
 package deque;
 import java.util.Iterator;
-import java.util.Spliterator;
-import java.util.function.Consumer;
 
 public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
     private DNode sentinel;
@@ -12,7 +10,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
         private DNode next;
 
         private DNode prev;
-        public DNode(T i, DNode n, DNode m) {
+        private DNode(T i, DNode n, DNode m) {
             item = i;
             next = n;
             prev = m;
@@ -24,13 +22,6 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
         sentinel.next = sentinel;
         sentinel.prev = sentinel;
         size = 0;
-    }
-
-    public LinkedListDeque(T x) {
-        sentinel = new DNode(x, null,  null);
-        sentinel.next = new DNode(x, null, sentinel);
-        sentinel.prev = sentinel;
-        size = 1;
     }
 
     public void addFirst(T x) {
@@ -97,8 +88,16 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
         return item;
     }
 
+    public T getRecursiveHelper(int index, DNode sNode) {
+        if (index == 0) {
+            return sNode.item;
+        }
+        sNode = sNode.next;
+        return getRecursiveHelper(index - 1, sNode);
+    }
+
     public T getRecursive(int index) {
-        if (index >= size) {
+        if (index >= size | index < 0) {
             return null;
         }
         DNode iter = sentinel.next;
@@ -107,9 +106,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
             return item;
         }
         index = index - 1;
-        LinkedListDeque<T> newList = this;
-        newList.removeFirst();
-        return newList.getRecursive(index);
+        return getRecursiveHelper(index, iter.next);
     }
     @Override
     public Iterator<T> iterator() {

@@ -85,6 +85,9 @@ public class LinkedListDequeTest {
         int getRecurNum = lld1.getRecursive(2);
         String errorRecurMsg = "get number wrong in recursive!";
         assertEquals(errorRecurMsg, 3, getRecurNum);
+
+        int getNumSecond = lld1.get(2);
+        assertEquals(errorMsg,3, getNumSecond);
     }
 
     @Test

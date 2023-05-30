@@ -1,7 +1,5 @@
 package deque;
 import java.util.Iterator;
-import java.util.Spliterator;
-import java.util.function.Consumer;
 
 public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     private int size;
