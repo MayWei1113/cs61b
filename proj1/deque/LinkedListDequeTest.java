@@ -163,9 +163,15 @@ public class LinkedListDequeTest {
         lld2.addFirst(20);
         lld2.addFirst(30);
 
+        ArrayDeque<Integer> lld3 = new ArrayDeque<Integer>();
+        lld3.addFirst(10);
+        lld3.addFirst(20);
+        lld3.addFirst(30);
+
         System.out.println(lld1.equals(lld2));
         System.out.println(lld1.equals(null));
         System.out.println(lld1.equals("lld2"));
+        System.out.println(lld1.equals(lld3));
     }
 
 }
