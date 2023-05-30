@@ -168,10 +168,20 @@ public class LinkedListDequeTest {
         lld3.addFirst(20);
         lld3.addFirst(30);
 
+        LinkedListDeque<Deque> lld4 = new LinkedListDeque<Deque>();
+        lld4.addFirst(lld1);
+        lld4.addFirst(lld2);
+        lld4.addFirst(lld3);
+
+        LinkedListDeque<Deque> lld5 = new LinkedListDeque<Deque>();
+        lld5.addFirst(lld1);
+        lld5.addFirst(lld1);
+        lld5.addFirst(lld1);
+
         System.out.println(lld1.equals(lld2));
         System.out.println(lld1.equals(null));
         System.out.println(lld1.equals("lld2"));
-        System.out.println(lld1.equals(lld3));
+        System.out.println(lld4.equals(lld5));
     }
 
 }
