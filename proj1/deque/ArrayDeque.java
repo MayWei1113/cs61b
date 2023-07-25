@@ -143,7 +143,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         private int iterNext;
         private T returnItem;
         private int wizPos;
-        public ArrayDequeIterator() {
+        private ArrayDequeIterator() {
             iterNext = startInd();
             returnItem = null;
             wizPos = 0;

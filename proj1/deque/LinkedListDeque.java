@@ -5,7 +5,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
     private DNode sentinel;
     private int size;
 
-    public class DNode {
+    private class DNode {
         private T item;
         private DNode next;
 
@@ -88,7 +88,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
         return item;
     }
 
-    public T getRecursiveHelper(int index, DNode sNode) {
+    private T getRecursiveHelper(int index, DNode sNode) {
         if (index == 0) {
             return sNode.item;
         }
