@@ -107,7 +107,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         if (this.isEmpty()) {
             return null;
         }
-        if (size <= items.length / 4 & size >= 16) {
+        if (size < items.length / 4 - 1 & size >= 16) {
             resize(items.length / 4);
         }
         T removal = this.get(size - 1);

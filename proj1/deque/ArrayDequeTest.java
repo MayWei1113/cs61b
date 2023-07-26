@@ -46,10 +46,39 @@ public class ArrayDequeTest {
         assertTrue("lld1 should be empty upon initialization", lld1.isEmpty());
 
         lld1.addFirst(10);
+        lld1.addFirst(9);
+        lld1.addFirst(8);
+        lld1.addFirst(7);
+        lld1.addFirst(6);
+        lld1.addFirst(5);
+        lld1.addFirst(4);
+        lld1.addFirst(3);
+        lld1.addFirst(2);
+        lld1.addFirst(1);
+        lld1.addFirst(2);
+        lld1.addFirst(3);
+        lld1.addFirst(4);
+        lld1.addFirst(5);
+        lld1.addFirst(6);
+        lld1.addFirst(7);
         // should not be empty
         assertFalse("lld1 should contain 1 item", lld1.isEmpty());
         int x = lld1.removeLast();
-        lld1.removeFirst();
+        int x2 = lld1.removeLast();
+        int x3 = lld1.removeLast();
+        int x4 = lld1.removeLast();
+        int x5 = lld1.removeLast();
+        int x6 = lld1.removeLast();
+        int x7 = lld1.removeLast();
+        int x8 = lld1.removeLast();
+        int x9 = lld1.removeLast();
+        int x10 = lld1.removeLast();
+        int x11 = lld1.removeLast();
+        int x12 = lld1.removeLast();
+        int x13 = lld1.removeLast();
+        int x14 = lld1.removeLast();
+        int x15 = lld1.removeLast();
+        int x16 = lld1.removeLast();
 
         // test for the coherence of add last and add first
         lld1.addLast(12);
@@ -57,6 +86,21 @@ public class ArrayDequeTest {
         // should be empty
         assertTrue("lld1 should be empty after removal", lld1.isEmpty());
         assertEquals(10, x);
+        assertEquals(9, x2);
+        assertEquals(8, x3);
+        assertEquals(7, x4);
+        assertEquals(6, x5);
+        assertEquals(5, x6);
+        assertEquals(4, x7);
+        assertEquals(3, x8);
+        assertEquals(2, x9);
+        assertEquals(1, x10);
+        assertEquals(2, x11);
+        assertEquals(3, x12);
+        assertEquals(4, x13);
+        assertEquals(5, x14);
+        assertEquals(6, x15);
+        assertEquals(7, x16);
         assertEquals(12, y);
     }
 
