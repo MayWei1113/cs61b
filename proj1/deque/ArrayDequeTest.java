@@ -206,4 +206,62 @@ public class ArrayDequeTest {
         System.out.println(lld1.equals(null));
         System.out.println(lld1.equals("lld2"));
     }
+
+    @Test
+    public void getTest() {
+        ArrayDeque<Integer> lld1 = new ArrayDeque<Integer>();
+        lld1.addLast(0);
+        lld1.addLast(1);
+        lld1.addLast(2);
+        lld1.addFirst(3);
+        lld1.removeLast();
+        lld1.get(0);
+        lld1.addLast(6);
+        lld1.get(0);
+        lld1.removeFirst();
+        lld1.addFirst(9);
+        lld1.addFirst(10);
+        lld1.removeLast();
+        lld1.get(2);
+        lld1.addFirst(13);
+        lld1.addLast(14);
+        lld1.addLast(15);
+        lld1.addFirst(16);
+        lld1.addFirst(17);
+        lld1.addLast(18);
+        lld1.removeFirst();
+        lld1.get(3);
+        lld1.get(2);
+        lld1.removeFirst();
+        int x = lld1.get(6);
+    }
+
+    @Test
+    public void getNewTest() {
+        ArrayDeque<Integer> lld2 = new ArrayDeque<Integer>();
+        lld2.addLast(0);
+        lld2.get(0);
+        lld2.removeFirst();
+        lld2.addFirst(3);
+        lld2.removeFirst();
+        lld2.addFirst(5);
+        lld2.addLast(6);
+        lld2.removeFirst();
+        lld2.removeLast();
+        lld2.addLast(9);
+        lld2.addLast(10);
+        lld2.addLast(11);
+        lld2.addLast(12);
+        lld2.addLast(13);
+        lld2.addFirst(14);
+        lld2.addLast(15);
+        lld2.addFirst(16);
+        lld2.get(2);
+        lld2.removeFirst();
+        lld2.addFirst(19);
+        lld2.addFirst(20);
+        lld2.addFirst(21);
+        lld2.removeFirst();
+        int x = lld2.get(8);
+    }
 }
