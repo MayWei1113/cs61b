@@ -141,25 +141,25 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
 
     public class ArrayDequeIterator implements Iterator<T> {
         private int iterNext;
+        private int count;
         private T returnItem;
-        private int wizPos;
         private ArrayDequeIterator() {
             iterNext = startInd();
             returnItem = null;
-            wizPos = 0;
+            count = 0;
         }
 
         public boolean hasNext() {
-            return wizPos < size;
+            return count != size;
         }
 
         public T next() {
             returnItem = items[iterNext];
             iterNext = iterNext + 1;
-            if (iterNext > items.length) {
+            if (iterNext >= items.length) {
                 iterNext = iterNext - items.length;
             }
-            wizPos = wizPos + 1;
+            count = count + 1;
             return returnItem;
         }
 
