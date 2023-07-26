@@ -55,12 +55,7 @@ public class ArrayDequeTest {
         lld1.addFirst(3);
         lld1.addFirst(2);
         lld1.addFirst(1);
-        lld1.addFirst(2);
-        lld1.addFirst(3);
-        lld1.addFirst(4);
-        lld1.addFirst(5);
-        lld1.addFirst(6);
-        lld1.addFirst(7);
+
         // should not be empty
         assertFalse("lld1 should contain 1 item", lld1.isEmpty());
         int x = lld1.removeLast();
@@ -73,6 +68,13 @@ public class ArrayDequeTest {
         int x8 = lld1.removeLast();
         int x9 = lld1.removeLast();
         int x10 = lld1.removeLast();
+
+        lld1.addFirst(2);
+        lld1.addFirst(3);
+        lld1.addFirst(4);
+        lld1.addFirst(5);
+        lld1.addFirst(6);
+        lld1.addFirst(7);
         int x11 = lld1.removeLast();
         int x12 = lld1.removeLast();
         int x13 = lld1.removeLast();

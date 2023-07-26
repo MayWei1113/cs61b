@@ -36,8 +36,8 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         if (end >= start) {
             System.arraycopy(items, start, newItems, 0, size);
         } else {
-            System.arraycopy(items, start, newItems, 0, size - start);
-            System.arraycopy(items, 0, newItems, size - start + 1, nextLast);
+            System.arraycopy(items, start, newItems, 0, items.length - start);
+            System.arraycopy(items, 0, newItems, items.length - start, nextLast);
         }
         nextLast = size;
         nextFirst = len - 1;
@@ -57,7 +57,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         size = size + 1;
     }
 
-    /* add an element to the front of an deque **/
+    /* add an element to the front of a deque **/
     public void addFirst(T x) {
         if (size == items.length) {
             resize(size * 2);
@@ -89,7 +89,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         if (this.isEmpty()) {
             return null;
         }
-        if (size <= items.length / 4 & size >= 16) {
+        if (size < items.length / 4 + 1 & items.length >= 16) {
             resize(items.length / 4);
         }
         T removal = this.get(0);
@@ -107,7 +107,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         if (this.isEmpty()) {
             return null;
         }
-        if (size < items.length / 4 - 1 & size >= 16) {
+        if (size < items.length / 4 + 1 & items.length >= 16) {
             resize(items.length / 4);
         }
         T removal = this.get(size - 1);
