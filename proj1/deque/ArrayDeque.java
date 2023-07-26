@@ -90,7 +90,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
             return null;
         }
         if (size < items.length / 4 + 1 & items.length >= 16) {
-            resize(items.length / 4);
+            resize(items.length / 4 + 1);
         }
         T removal = this.get(0);
         nextFirst = nextFirst + 1;
@@ -108,7 +108,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
             return null;
         }
         if (size < items.length / 4 + 1 & items.length >= 16) {
-            resize(items.length / 4);
+            resize(items.length / 4 + 1);
         }
         T removal = this.get(size - 1);
         nextLast = nextLast - 1;
