@@ -233,4 +233,30 @@ public class ArrayDequeTest {
         }
     }
 
+    @Test
+    public void deepEqualTest() {
+        ArrayDeque<Integer> lld1 = new ArrayDeque<Integer>();
+        lld1.addFirst(10);
+        lld1.addFirst(20);
+        lld1.addFirst(30);
+        lld1.addFirst(40);
+
+        ArrayDeque<Integer> lld2 = new ArrayDeque<Integer>();
+        lld2.addFirst(10);
+        lld2.addFirst(20);
+        lld2.addFirst(30);
+        lld2.addFirst(40);
+
+        ArrayDeque<Deque> lld3 = new ArrayDeque<Deque>();
+        lld3.addFirst(lld1);
+        lld3.addFirst(lld2);
+
+        ArrayDeque<Deque> lld4 = new ArrayDeque<Deque>();
+        lld4.addFirst(lld2);
+        lld4.addFirst(lld1);
+
+        assertEquals(true,lld1.equals(lld2));
+        assertEquals(true,lld4.equals(lld3));
+    }
+
 }
