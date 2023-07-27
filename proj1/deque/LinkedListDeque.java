@@ -118,7 +118,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
         private DNode itera;
         private T returnItem;
 
-        public LinkedListIterator() {
+        LinkedListIterator() {
             wizPos = 0;
             returnItem = null;
             itera = sentinel.next;
@@ -158,8 +158,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
                 if (!(temp.equals(other.get(i)))) {
                     return false;
                 }
-            }
-            else if (!this.get(i).equals(other.get(i))) {
+            } else if (!this.get(i).equals(other.get(i))) {
                 return false;
             }
         }
