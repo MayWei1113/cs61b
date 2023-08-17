@@ -37,7 +37,7 @@ public class BSTMap<K extends Comparable<K>, Value> implements Map61B {
 
     @Override
     public boolean containsKey(Object key) {
-        return false;
+        return containsKey((K) key, (BSTMapNode) this.node);
     }
 
     @Override
