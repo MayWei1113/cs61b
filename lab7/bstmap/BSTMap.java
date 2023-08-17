@@ -3,7 +3,7 @@ package bstmap;
 import java.util.Iterator;
 import java.util.Set;
 
-public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
+public class BSTMap<K extends Comparable, V> implements Map61B<K, V> {
     private Object node;
 
     public BSTMap(K k, V v) {
@@ -33,8 +33,8 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
     }
 
     @Override
-    public boolean containsKey(Comparable key) {
-        return containsKey((K) key, (BSTMapNode) this.node);
+    public boolean containsKey(K key) {
+        return containsKey(key, (BSTMapNode) this.node);
     }
 
 

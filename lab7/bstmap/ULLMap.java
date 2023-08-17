@@ -24,11 +24,6 @@ public class ULLMap<K, V>  implements Map61B<K, V> {
     }
 
     @Override
-    public boolean containsKey(Comparable key) {
-        return false;
-    }
-
-    @Override
     public int size() {
         return size;
     }
