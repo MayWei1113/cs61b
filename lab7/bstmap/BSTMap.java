@@ -1,15 +1,13 @@
 package bstmap;
 
-import edu.princeton.cs.algs4.BST;
-
 import java.util.Iterator;
 import java.util.Set;
 
-public class BSTMap<K extends Comparable<K>, Value> implements Map61B {
+public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
     private Object node;
 
-    public BSTMap(K K, Value V) {
-        this.node = new BSTMapNode(K, V);
+    public BSTMap(K k, V v) {
+        this.node = new BSTMapNode(k, v);
     }
 
     public BSTMap() {
@@ -18,13 +16,12 @@ public class BSTMap<K extends Comparable<K>, Value> implements Map61B {
 
     private class BSTMapNode {
         K key;
-        Value v;
+        V v;
         BSTMapNode left;
         BSTMapNode right;
         int size = 0;
 
-
-        private BSTMapNode(K k, Value v) {
+        private BSTMapNode(K k, V v) {
             this.key = k;
             this.v = v;
             size = 1;
@@ -36,14 +33,10 @@ public class BSTMap<K extends Comparable<K>, Value> implements Map61B {
     }
 
     @Override
-    public boolean containsKey(Object key) {
-        return containsKey((K) key, (BSTMapNode) this.node);
-    }
-
-    @Override
     public boolean containsKey(Comparable key) {
         return containsKey((K) key, (BSTMapNode) this.node);
     }
+
 
     private boolean containsKey(K key, BSTMapNode n) {
         if (n == null) {
@@ -60,11 +53,11 @@ public class BSTMap<K extends Comparable<K>, Value> implements Map61B {
     }
 
     @Override
-    public Object get(Object key) {
-        return get((K) key, (BSTMapNode) this.node);
+    public V get(K key) {
+        return get(key, (BSTMapNode) this.node);
     }
 
-    private Value get(K key, BSTMapNode n) {
+    private V get(K key, BSTMapNode n) {
         if (n == null) {
             return null;
         }
@@ -88,12 +81,12 @@ public class BSTMap<K extends Comparable<K>, Value> implements Map61B {
     }
 
     @Override
-    public void put(Object key, Object value) {
-        BSTMapNode n = put((K) key, (Value) value, (BSTMapNode) this.node);
+    public void put(K key, V value) {
+        BSTMapNode n = put(key, value, (BSTMapNode) this.node);
         this.node = n;
     }
 
-    private BSTMapNode put(K key, Value v, BSTMapNode n) {
+    private BSTMapNode put(K key, V v, BSTMapNode n) {
         if (n == null) {
             n = new BSTMapNode(key, v);
         }
@@ -127,14 +120,18 @@ public class BSTMap<K extends Comparable<K>, Value> implements Map61B {
     }
 
     @Override
-    public Object remove(Object key) {
-        //throw new UnsupportedOperationException();
-        Object v = this.get(key);
+    public V remove(K key) {
+        V v = this.get(key);
         if (v != null) {
-            BSTMapNode n = removeHelper((K) key, (BSTMapNode) this.node);
+            BSTMapNode n = removeHelper(key, (BSTMapNode) this.node);
             this.node = n;
         }
         return v;
+    }
+
+    @Override
+    public V remove(K key, V value) {
+        return null;
     }
 
     private BSTMapNode removeHelper(K key, BSTMapNode n) {
@@ -156,7 +153,7 @@ public class BSTMap<K extends Comparable<K>, Value> implements Map61B {
             } else {
                 BSTMapNode lRight = findLeftRight(n.left);
                 K tempKey = lRight.key;
-                Value tempV = lRight.v;
+                V tempV = lRight.v;
                 n = removeHelper(tempKey, n);
                 n.key = tempKey;
                 n.v = tempV;
@@ -173,11 +170,6 @@ public class BSTMap<K extends Comparable<K>, Value> implements Map61B {
             return n;
         }
         return findLeftRight(n.right);
-    }
-
-    @Override
-    public Object remove(Object key, Object value) {
-        throw new UnsupportedOperationException();
     }
 
 
