@@ -19,6 +19,8 @@ public interface Map61B<K, V> extends Iterable<K> {
      */
     V get(K key);
 
+    boolean containsKey(Comparable key);
+
     /* Returns the number of key-value mappings in this map. */
     int size();
 

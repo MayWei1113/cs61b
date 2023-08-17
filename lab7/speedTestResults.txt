@@ -1,0 +1,14 @@
+InsertRandomSpeedTest				
+string numbers	100	1000	10000	100000
+ULLMap	0	0.05	1.79	
+BSTMap	0	0.02	0.18	1.68
+TreeMap	0	0.02	0.17	1.69
+HashMap	0	0.02	0.17	1.67
+				
+				
+InsertInOrderSpeedTest				
+string numbers	100	1000	10000	100000
+ULLMap	0.01	0.03	1.39	na
+BSTMap	0	0.02	1.43	na
+TreeMap	0	0	0.01	0.13
+HashMap	0	0	0.01	0.05
