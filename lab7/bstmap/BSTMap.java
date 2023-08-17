@@ -132,9 +132,6 @@ public class BSTMap<K extends Comparable<K>, Value> implements Map61B {
         Object v = this.get(key);
         if (v != null) {
             BSTMapNode n = removeHelper((K) key, (BSTMapNode) this.node);
-            if (n != null) {
-                n.size -= 1;
-            }
             this.node = n;
         }
         return v;
@@ -143,9 +140,11 @@ public class BSTMap<K extends Comparable<K>, Value> implements Map61B {
     private BSTMapNode removeHelper(K key, BSTMapNode n) {
         if (n.key.compareTo(key) > 0) {
             n.left = removeHelper(key, n.left);
+            n.size -= 1;
         }
         if (n.key.compareTo(key) < 0) {
             n.right =  removeHelper(key, n.right);
+            n.size -= 1;
         }
         if (n.key.compareTo(key) == 0) {
             if (n.left == null & n.right == null) {
@@ -161,6 +160,7 @@ public class BSTMap<K extends Comparable<K>, Value> implements Map61B {
                 n = removeHelper(tempKey, n);
                 n.key = tempKey;
                 n.v = tempV;
+                n.size -= 1;
             }
 
         }
