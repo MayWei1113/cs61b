@@ -28,10 +28,9 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
     /* Instance Variables */
     private Collection<Node>[] buckets;
     // You should probably define some more!
-    double maxLoad = 0.75;
-    int N; // number of element
-    int M = 16; // number of buckets
-    Set hashSet = new HashSet();
+    private double maxLoad = 0.75;
+    private int N; // number of element
+    private int M = 16; // number of buckets
 
     /** Constructors */
     public MyHashMap() {
