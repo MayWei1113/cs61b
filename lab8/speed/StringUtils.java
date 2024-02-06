@@ -13,7 +13,7 @@ public class StringUtils {
     /** Random number generator for this class. */
     private static Random r = new Random();
 
-    /** Sets random seed to L so that results of randomString are predictable.*/
+    /** Sets random seed to L so that results of randomString are predicbuckets.*/
     public static void setSeed(long l) {
         r = new Random(l);
     }
